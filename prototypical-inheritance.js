@@ -83,6 +83,30 @@
 // const c = new Circle(2, "red");
 
 // Method overriding.
+// function extend(Child, Parent) {
+//     Child.prototype = Object.create(Parent.prototype);
+//     Child.prototype.constructor = Child;
+// }
+
+// function Shape() {}
+
+// Shape.prototype.duplicate = function() {
+//     console.log("Duplicate");
+// }
+
+// function Circle() {}
+
+// extend(Circle, Shape);
+
+// Circle.prototype.duplicate = function() {
+//     Shape.prototype.duplicate.call(this);
+
+//     console.log("Duplicate from circle");
+// }
+
+// const c = new Circle();
+
+// Polymorphism
 function extend(Child, Parent) {
     Child.prototype = Object.create(Parent.prototype);
     Child.prototype.constructor = Child;
@@ -99,9 +123,22 @@ function Circle() {}
 extend(Circle, Shape);
 
 Circle.prototype.duplicate = function() {
-    Shape.prototype.duplicate.call(this);
-
     console.log("Duplicate from circle");
 }
 
-const c = new Circle();
+function Square(){}
+
+extend(Square, Shape);
+
+Square.prototype.duplicate = function() {
+    console.log("Duplicate from Square");
+}
+
+const shapes = [
+    new Circle(),
+    new Square()
+];
+
+for (let shape of shapes) {
+    shape.duplicate();
+}
